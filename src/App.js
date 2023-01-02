@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import Card from './components/UI/Card';
 import { useDispatch } from 'react-redux';
 import { notifyActions } from './store/uiSlice';
+import { cartArrActions } from './store/cartArrReducer';
 
 let isInitial=true
 
@@ -27,6 +28,15 @@ if (showNotification){
 
     if (isInitial){
       isInitial=false
+      fetch('https://advance-redux-amar-default-rtdb.firebaseio.com/cart.json')
+      .then((res)=>{
+        if(res.ok){
+          res.json().then((data)=>{
+            
+            dispatch(cartArrActions.initCart(data.cartArr))
+          })
+        }
+      })
       return
     }
 

@@ -33,6 +33,9 @@ const cartArrSlice=createSlice({
                 state.cartArr.splice(exiItemIndx,1)
             }
 
+        },
+        initCart(state,action){
+            state.cartArr=action.payload
         }
     }
 })
